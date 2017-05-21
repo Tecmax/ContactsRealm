@@ -1,25 +1,34 @@
 package com.nunez.contacts.repository
 
 import com.nunez.contacts.entities.Contact
+import com.vicpin.krealmextensions.delete
+import com.vicpin.krealmextensions.queryFirst
+import com.vicpin.krealmextensions.querySorted
+import com.vicpin.krealmextensions.save
+import io.realm.Sort
 
-class ConcactsRepository: ContactsRepositoryTemplate {
+class ConcactsRepository : ContactsRepositoryTemplate {
+
     override fun create(contact: Contact) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        contact.save()
     }
 
     override fun read(contactId: Int): Contact {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        val contact = Contact().queryFirst { it.equalTo("id", contactId) }
+
+        contact?.let { return contact }
+        return Contact()
     }
 
     override fun read(): List<Contact> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return Contact().querySorted("name", Sort.DESCENDING)
     }
 
     override fun update(contact: Contact) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        contact.save()
     }
 
     override fun delete(contact: Contact) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        Contact().delete { it.equalTo("id", contact.id) }
     }
 }
