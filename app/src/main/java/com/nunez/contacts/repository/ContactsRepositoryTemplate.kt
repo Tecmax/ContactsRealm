@@ -6,7 +6,7 @@ import com.nunez.contacts.entities.Contact
 interface ContactsRepositoryTemplate {
     fun create(contact: Contact)
 
-    fun read(contactId: Int): Contact
+    fun read(contactId: String): Contact
 
     fun read(): List<Contact>
 

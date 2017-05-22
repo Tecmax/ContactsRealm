@@ -1,19 +1,18 @@
 package com.nunez.contacts.repository
 
 import com.nunez.contacts.entities.Contact
-import com.vicpin.krealmextensions.delete
-import com.vicpin.krealmextensions.queryFirst
-import com.vicpin.krealmextensions.querySorted
-import com.vicpin.krealmextensions.save
+import com.vicpin.krealmextensions.*
 import io.realm.Sort
+import java.util.*
 
-class ConcactsRepository : ContactsRepositoryTemplate {
+class ContactsRepository : ContactsRepositoryTemplate {
 
     override fun create(contact: Contact) {
-        contact.save()
+        contact.id = UUID.randomUUID().toString()
+        contact.create()
     }
 
-    override fun read(contactId: Int): Contact {
+    override fun read(contactId: String): Contact {
         val contact = Contact().queryFirst { it.equalTo("id", contactId) }
 
         contact?.let { return contact }
@@ -21,7 +20,7 @@ class ConcactsRepository : ContactsRepositoryTemplate {
     }
 
     override fun read(): List<Contact> {
-        return Contact().querySorted("name", Sort.DESCENDING)
+        return Contact().querySorted("firstName", Sort.DESCENDING)
     }
 
     override fun update(contact: Contact) {
