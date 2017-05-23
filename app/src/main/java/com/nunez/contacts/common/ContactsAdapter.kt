@@ -9,7 +9,8 @@ import kotlinx.android.synthetic.main.contact_item.view.*
 
 class ContactsAdapter(
         var contacts: List<Contact>,
-        var onClickListener: (String) -> (Unit)
+        var onClickListener: (String) -> Unit,
+        var onLongClickListener: (String) -> Unit
 ) : RecyclerView.Adapter<ContactsAdapter.ContactViewHolder>() {
 
     override fun getItemCount() = contacts.size
@@ -19,14 +20,27 @@ class ContactsAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContactViewHolder {
-        return ContactViewHolder(parent.inflate(R.layout.contact_item), onClickListener)
+        return ContactViewHolder(parent.inflate(R.layout.contact_item),
+                onClickListener,
+                onLongClickListener)
     }
 
-    class ContactViewHolder(val view: View, val contactClickListener: (String) -> Unit) : RecyclerView.ViewHolder(view) {
+    class ContactViewHolder(
+            val view: View,
+            val contactClickListener: (String) -> Unit,
+            val contactLongClickListener: (String) -> Unit
+    ) : RecyclerView.ViewHolder(view) {
+
         fun bind(contact: Contact) {
             with(contact) {
                 view.contactName.text = "$firstName  $lastName"
+
+                view.isLongClickable = true
                 view.setOnClickListener { contactClickListener(id) }
+                view.setOnLongClickListener {
+                    contactClickListener(id)
+                    true
+                }
             }
         }
     }
