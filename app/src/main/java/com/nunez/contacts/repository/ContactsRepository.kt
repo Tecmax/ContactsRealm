@@ -20,14 +20,14 @@ class ContactsRepository : ContactsRepositoryTemplate {
     }
 
     override fun read(): List<Contact> {
-        return Contact().querySorted("firstName", Sort.DESCENDING)
+        return Contact().querySorted("firstName", Sort.ASCENDING)
     }
 
     override fun update(contact: Contact) {
         contact.save()
     }
 
-    override fun delete(contact: Contact) {
-        Contact().delete { it.equalTo("id", contact.id) }
+    override fun delete(id: String) {
+        Contact().delete { it.equalTo("id", id) }
     }
 }

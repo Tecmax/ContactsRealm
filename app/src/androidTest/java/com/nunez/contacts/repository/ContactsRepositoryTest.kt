@@ -62,7 +62,7 @@ class ContactsRepositoryTest {
         val contacts = ContactsRepository().read()
 
         // When
-        ContactsRepository().delete(contact)
+        ContactsRepository().delete(contact.id)
         val newSize =  ContactsRepository().read().size
 
         print(newSize)

@@ -12,5 +12,5 @@ interface ContactsRepositoryTemplate {
 
     fun update(contact: Contact)
 
-    fun delete(contact: Contact)
+    fun delete(id:String)
 }
