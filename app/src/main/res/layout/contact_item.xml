@@ -12,10 +12,11 @@
     android:layout_marginBottom="8dp"
     android:paddingEnd="@dimen/layout_horizontal_padding">
 
-    <android.support.v4.widget.CircleImageView
+    <ImageView
         android:id="@+id/contactImage"
         android:layout_width="40dp"
         android:layout_height="40dp"
+        android:src="@drawable/contact"
         android:layout_marginEnd="@dimen/layout_horizontal_padding"
         android:layout_marginRight="@dimen/layout_horizontal_padding"
         android:layout_gravity="center"
