@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -11,7 +11,8 @@
 
    <android.support.v7.widget.RecyclerView
        android:id="@+id/contactsRecycler"
-       android:layout_width="368dp"
-       android:layout_height="495dp"/>
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       tools:listitem="@layout/contact_item"/>
 
-</android.support.constraint.ConstraintLayout>
+</FrameLayout>
