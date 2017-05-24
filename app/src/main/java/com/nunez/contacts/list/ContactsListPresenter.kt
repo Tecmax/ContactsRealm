@@ -1,5 +1,6 @@
 package com.nunez.contacts.list
 
+import com.nunez.contacts.editContact.EditContactActivity
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
 
@@ -19,32 +20,21 @@ class ContactsListPresenter(
                 )
     }
 
-    override fun contactCliked(id: String) {
-        view.showContactDetails(id)
-    }
+    override fun contactCliked(id: String) = view.showContactDetails(id)
 
-    override fun contactLongCliked(id: String) {
-        view.showDeleteBottomSheet(id)
-    }
+    override fun contactLongCliked(id: String) = view.showDeleteBottomSheet(id)
 
-    override fun showErrorMessage() {
-        view.showErrorMessage()
-    }
+    override fun showErrorMessage() = view.showErrorMessage()
 
     override fun contactToDeleteClicked(id: String) {
         interactor.deleteContact(id)
         requestContacts()
     }
 
-    override fun addContactClicked() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    override fun addContactClicked() = goToAddContactActivity()
 
-    override fun goToAddContactActivity() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    override fun goToAddContactActivity() = view.goToActivity(EditContactActivity::class)
 
     override fun goToEditContactActivity() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 }
