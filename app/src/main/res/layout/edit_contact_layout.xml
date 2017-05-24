@@ -55,27 +55,27 @@
         app:layout_constraintTop_toBottomOf="@id/lastNameInput"/>
 
     <EditText
-        android:id="@+id/editText5"
+        android:id="@+id/birthdayInput"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="7dp"
         android:ems="10"
-        android:hint="Birthday"
+        android:hint="@string/edit_contact_hint_birthday"
         android:inputType="date"
         app:layout_constraintLeft_toLeftOf="@+id/guideline2"
-        app:layout_constraintTop_toBottomOf="@+id/phoneNumberInput"/>
+        app:layout_constraintTop_toBottomOf="@+id/phoneNumberInput"
+        android:layout_marginLeft="-58dp"/>
 
     <EditText
-        android:id="@+id/editText6"
+        android:id="@+id/zipcodeInput"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="0dp"
         android:layout_marginTop="16dp"
         android:ems="10"
         android:hint="@string/hint_zip_code"
         android:inputType="textPostalAddress"
         app:layout_constraintLeft_toLeftOf="@+id/guideline2"
-        app:layout_constraintTop_toBottomOf="@+id/editText5"/>
+        app:layout_constraintTop_toBottomOf="@+id/birthdayInput"/>
 
     <ImageView
         android:id="@+id/imageView"
@@ -111,10 +111,10 @@
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toBottomOf="@+id/editText5"
+        app:layout_constraintBottom_toBottomOf="@+id/birthdayInput"
         app:layout_constraintLeft_toLeftOf="@+id/guideline"
-        app:layout_constraintRight_toLeftOf="@+id/editText5"
-        app:layout_constraintTop_toTopOf="@+id/editText5"
+        app:layout_constraintRight_toLeftOf="@+id/birthdayInput"
+        app:layout_constraintTop_toTopOf="@+id/birthdayInput"
         app:srcCompat="@drawable/calendar"/>
 
     <ImageView
@@ -125,10 +125,10 @@
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toBottomOf="@+id/editText6"
+        app:layout_constraintBottom_toBottomOf="@+id/zipcodeInput"
         app:layout_constraintLeft_toLeftOf="@+id/guideline"
-        app:layout_constraintRight_toLeftOf="@+id/editText6"
-        app:layout_constraintTop_toTopOf="@+id/editText6"
+        app:layout_constraintRight_toLeftOf="@+id/zipcodeInput"
+        app:layout_constraintTop_toTopOf="@+id/zipcodeInput"
         app:srcCompat="@drawable/mail"/>
 
     <Button

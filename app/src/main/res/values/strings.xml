@@ -10,4 +10,5 @@
     <string name="button_cancel">Cancel</string>
     <string name="edit_contact_modal_edit">Edit</string>
     <string name="edit_contact_modal_delete">Delete</string>
+    <string name="edit_contact_hint_birthday">Birthday</string>
 </resources>
