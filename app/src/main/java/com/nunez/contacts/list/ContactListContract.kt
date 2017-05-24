@@ -29,6 +29,6 @@ interface ContactListContract {
     interface Interactor {
         fun getContacts(): Observable<List<Contact>>
         fun deleteContact(id: String)
-        fun addFakeContacts()
+        fun addFakeContacts(): List<Contact>
     }
 }

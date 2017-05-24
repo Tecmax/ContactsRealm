@@ -12,21 +12,25 @@ class ContactListInteractor(
         val context: Context
 ) : ContactListContract.Interactor {
 
-    override fun addFakeContacts() {
+    override fun addFakeContacts(): List<Contact> {
         val faker = Faker()
+        var contacts = ArrayList<Contact>()
+
         for (i in 0..6) {
-            with(faker){
+            with(faker) {
                 val contact = Contact(
                         firstName = name().firstName(),
-                        lastName =  name().lastName(),
+                        lastName = name().lastName(),
                         zipCode = address().zipCode(),
                         phoneNumber = phoneNumber().toString(),
                         birthday = date().toString()
                 )
 
                 repository.create(contact)
+                contacts.add(contact)
             }
         }
+        return contacts as List<Contact>
     }
 
     override fun getContacts(): Observable<List<Contact>> {
@@ -34,11 +38,13 @@ class ContactListInteractor(
         return Observable.create {
             subscriber ->
 
-            if (repository.read().isEmpty()) {
-                addFakeContacts()
+            var contacts = repository.read()
+
+            if (contacts.isEmpty()) {
+              contacts = addFakeContacts()
             }
 
-            subscriber.onNext(repository.read())
+            subscriber.onNext(contacts)
             subscriber.onCompleted()
         }
     }
