@@ -1,8 +1,9 @@
 package com.nunez.contacts.list
 
-import android.content.Intent
+import com.nunez.contacts.editContact.EditContactActivity
 import com.nunez.contacts.entities.Contact
 import rx.Observable
+import kotlin.reflect.KClass
 
 
 interface ContactListContract {
@@ -12,7 +13,8 @@ interface ContactListContract {
         fun showContactDetails(id: String)
         fun showErrorMessage()
         fun showDeleteBottomSheet(id: String)
-        fun goToActivity(intent: Intent)
+        fun goToActivity(activityClass: KClass<EditContactActivity>)
+        fun goToActivity(id:String, activityClass: KClass<EditContactActivity>)
     }
 
     interface Presenter {

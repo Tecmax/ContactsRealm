@@ -10,12 +10,19 @@ import android.view.MenuItem
 import com.nunez.contacts.R
 import com.nunez.contacts.common.ContactsAdapter
 import com.nunez.contacts.common.showSnackbar
+import com.nunez.contacts.editContact.EditContactActivity
 import com.nunez.contacts.entities.Contact
 import com.nunez.contacts.repository.ContactsRepository
 import kotlinx.android.synthetic.main.contacts_list_activity.*
 import kotlinx.android.synthetic.main.content_contatcs_list.*
+import kotlin.reflect.KClass
 
 class ContactsListActivity : AppCompatActivity(), ContactListContract.View {
+
+    companion object {
+        const val EXTRA_CONTACT_ID = "contact_id"
+    }
+
     lateinit var adapter: ContactsAdapter
     val repository = ContactsRepository()
     val interactor by lazy { ContactListInteractor(repository, applicationContext) }
@@ -31,8 +38,7 @@ class ContactsListActivity : AppCompatActivity(), ContactListContract.View {
         contactsRecycler.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
 
         addContact.setOnClickListener { view ->
-//            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                    .setAction("Action", null).show()
+            presenter.addContactClicked()
         }
     }
 
@@ -58,11 +64,11 @@ class ContactsListActivity : AppCompatActivity(), ContactListContract.View {
 
     override fun showContacts(contacts: List<Contact>) {
         adapter = ContactsAdapter(contacts,
-                {contactClickedId ->
-                    print(contactClickedId)
+                { id ->
+                    presenter.contactCliked(id)
                 },
-                {contactLongClickedId ->
-                    print(contactLongClickedId)
+                { id ->
+                    presenter.contactLongCliked(id)
                 }
         )
 
@@ -82,8 +88,16 @@ class ContactsListActivity : AppCompatActivity(), ContactListContract.View {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    override fun goToActivity(intent: Intent) {
+    override fun goToActivity(contactId: String, activityClass: KClass<EditContactActivity>) {
+        val intent = Intent(this, activityClass.java)
+
+        if (contactId.isNotEmpty()) intent.putExtra(EXTRA_CONTACT_ID, contactId)
+
         startActivity(intent)
+    }
+
+    override fun goToActivity(activityClass: KClass<EditContactActivity>) {
+        startActivity(Intent(this, activityClass.java))
     }
 
 }
