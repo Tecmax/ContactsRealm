@@ -14,7 +14,7 @@ interface ContactListContract {
         fun showErrorMessage()
         fun showDeleteBottomSheet(id: String)
         fun goToActivity(activityClass: KClass<EditContactActivity>)
-        fun goToActivity(id:String, activityClass: KClass<EditContactActivity>)
+        fun goToActivity(contactId:String, activityClass: KClass<EditContactActivity>)
     }
 
     interface Presenter {
