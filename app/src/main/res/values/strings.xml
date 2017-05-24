@@ -2,4 +2,10 @@
     <string name="app_name">Contacts</string>
     <string name="action_settings">Settings</string>
     <string name="message_error">Ups! :/ seems like something wrong just happened</string>
+    <string name="hint_first_name">First name</string>
+    <string name="hint_last_name">Last name</string>
+    <string name="hint_phone_number">Phone number</string>
+    <string name="hint_zip_code">Zip code</string>
+    <string name="button_save">Save</string>
+    <string name="button_cancel">Cancel</string>
 </resources>
