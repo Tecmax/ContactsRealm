@@ -38,7 +38,7 @@ class ContactsAdapter(
                 view.isLongClickable = true
                 view.setOnClickListener { contactClickListener(id) }
                 view.setOnLongClickListener {
-                    contactClickListener(id)
+                    contactLongClickListener(id)
                     true
                 }
             }
