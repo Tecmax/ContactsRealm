@@ -12,7 +12,7 @@ interface ContactListContract {
         fun showContacts(contacts: List<Contact>)
         fun showContactDetails(id: String)
         fun showErrorMessage()
-        fun showDeleteBottomSheet(id: String)
+        fun showOptionsModalBottomSheet(id: String)
         fun goToActivity(activityClass: KClass<EditContactActivity>)
         fun goToActivity(contactId:String, activityClass: KClass<EditContactActivity>)
     }
@@ -25,7 +25,7 @@ interface ContactListContract {
         fun contactToDeleteClicked(id: String)
         fun showErrorMessage()
         fun goToAddContactActivity()
-        fun goToEditContactActivity()
+        fun contactToEditClicked(id: String)
     }
 
     interface Interactor {
