@@ -22,7 +22,7 @@ class ContactsListPresenter(
 
     override fun contactCliked(id: String) = view.showContactDetails(id)
 
-    override fun contactLongCliked(id: String) = view.showDeleteBottomSheet(id)
+    override fun contactLongCliked(id: String) = view.showOptionsModalBottomSheet(id)
 
     override fun showErrorMessage() = view.showErrorMessage()
 
@@ -33,8 +33,11 @@ class ContactsListPresenter(
 
     override fun addContactClicked() = goToAddContactActivity()
 
-    override fun goToAddContactActivity() = view.goToActivity(EditContactActivity::class)
+    override fun goToAddContactActivity() {
 
-    override fun goToEditContactActivity() {
+    }
+
+    override fun contactToEditClicked(id: String){
+        view.goToActivity(id, EditContactActivity::class)
     }
 }
