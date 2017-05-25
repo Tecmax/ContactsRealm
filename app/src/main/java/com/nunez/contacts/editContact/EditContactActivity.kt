@@ -19,6 +19,8 @@ class EditContactActivity() : AppCompatActivity(), EditContactContract.View {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.edit_contact_layout)
 
+        supportActionBar?.title = getString(R.string.edit_contact_activity_title)
+
         val arguments = intent.extras
         arguments?.let {
             val id = it.getString(ContactsListActivity.EXTRA_CONTACT_ID)
