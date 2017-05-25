@@ -13,4 +13,5 @@
     <string name="edit_contact_hint_birthday">Birthday</string>
     <string name="add_contact_error_msg">Please add the contact name</string>
     <string name="add_contact_activity_title">Add new contact</string>
+    <string name="edit_contact_activity_title">Edit contact</string>
 </resources>
