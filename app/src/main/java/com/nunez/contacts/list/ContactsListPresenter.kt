@@ -4,13 +4,13 @@ import com.nunez.contacts.editContact.EditContactActivity
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
 
-
 class ContactsListPresenter(
         val view: ContactListContract.View,
         val interactor: ContactListContract.Interactor
 ) : ContactListContract.Presenter {
 
     override fun requestContacts() {
+        view.dismissModal()
         interactor.getContacts()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

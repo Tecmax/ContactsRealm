@@ -23,6 +23,8 @@ class ContactsListActivity : AppCompatActivity(), ContactListContract.View {
     }
 
     lateinit var adapter: ContactsAdapter
+
+    var modal: ContactOptionModal? = null
     val repository = ContactsRepository()
     val interactor by lazy { ContactListInteractor(repository, applicationContext) }
     val presenter by lazy { ContactsListPresenter(this, interactor) }
@@ -39,6 +41,12 @@ class ContactsListActivity : AppCompatActivity(), ContactListContract.View {
         addContact.setOnClickListener { view ->
             presenter.addContactClicked()
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        dismissModal()
+        presenter.requestContacts()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -82,10 +90,12 @@ class ContactsListActivity : AppCompatActivity(), ContactListContract.View {
     }
 
     override fun showOptionsModalBottomSheet(id: String) {
-        val modal = ContactOptionModal(id,
-                {presenter.contactToEditClicked(it)},
-                {presenter.contactToDeleteClicked(it)}
-        ).show(supportFragmentManager, "modal")
+        modal = ContactOptionModal(id,
+                { presenter.contactToEditClicked(it) },
+                { presenter.contactToDeleteClicked(it) }
+        )
+
+        modal?.show(supportFragmentManager, "modal")
     }
 
     override fun goToActivity(contactId: String, activityClass: KClass<EditContactActivity>) {
@@ -100,4 +110,7 @@ class ContactsListActivity : AppCompatActivity(), ContactListContract.View {
         startActivity(Intent(this, activityClass.java))
     }
 
+    override fun dismissModal() {
+        modal?.dismiss()
+    }
 }

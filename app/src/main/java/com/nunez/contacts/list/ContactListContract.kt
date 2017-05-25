@@ -15,6 +15,7 @@ interface ContactListContract {
         fun showOptionsModalBottomSheet(id: String)
         fun goToActivity(activityClass: KClass<EditContactActivity>)
         fun goToActivity(contactId:String, activityClass: KClass<EditContactActivity>)
+        fun dismissModal()
     }
 
     interface Presenter {
