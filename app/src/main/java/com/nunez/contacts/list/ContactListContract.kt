@@ -1,9 +1,7 @@
 package com.nunez.contacts.list
 
-import com.nunez.contacts.editContact.EditContactActivity
 import com.nunez.contacts.entities.Contact
 import rx.Observable
-import kotlin.reflect.KClass
 
 
 interface ContactListContract {
@@ -13,8 +11,8 @@ interface ContactListContract {
         fun showContactDetails(id: String)
         fun showErrorMessage()
         fun showOptionsModalBottomSheet(id: String)
-        fun goToActivity(activityClass: KClass<EditContactActivity>)
-        fun goToActivity(contactId:String, activityClass: KClass<EditContactActivity>)
+        fun goToAddContactActivity()
+        fun goToEditContactActivity(contactId:String)
         fun dismissModal()
     }
 

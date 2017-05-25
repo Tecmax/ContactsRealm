@@ -7,13 +7,13 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.Menu
 import android.view.MenuItem
 import com.nunez.contacts.R
+import com.nunez.contacts.addContact.AddContactActivity
 import com.nunez.contacts.common.ContactsAdapter
 import com.nunez.contacts.editContact.EditContactActivity
 import com.nunez.contacts.entities.Contact
 import com.nunez.contacts.repository.ContactsRepository
 import kotlinx.android.synthetic.main.contacts_list_activity.*
 import kotlinx.android.synthetic.main.content_contatcs_list.*
-import kotlin.reflect.KClass
 
 class ContactsListActivity : AppCompatActivity(), ContactListContract.View {
 
@@ -98,16 +98,17 @@ class ContactsListActivity : AppCompatActivity(), ContactListContract.View {
         modal?.show(supportFragmentManager, "modal")
     }
 
-    override fun goToActivity(contactId: String, activityClass: KClass<EditContactActivity>) {
-        val intent = Intent(this, activityClass.java)
+    override fun goToEditContactActivity(contactId: String) {
+        val intent = Intent(this, EditContactActivity::class.java)
 
-        if (contactId.isNotEmpty()) intent.putExtra(EXTRA_CONTACT_ID, contactId)
-
-        startActivity(intent)
+        if (contactId.isNotEmpty()){
+            intent.putExtra(EXTRA_CONTACT_ID, contactId)
+            startActivity(intent)
+        }
     }
 
-    override fun goToActivity(activityClass: KClass<EditContactActivity>) {
-        startActivity(Intent(this, activityClass.java))
+    override fun goToAddContactActivity() {
+        startActivity(Intent(this, AddContactActivity::class.java))
     }
 
     override fun dismissModal() {

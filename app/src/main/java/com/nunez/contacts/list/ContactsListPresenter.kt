@@ -1,6 +1,5 @@
 package com.nunez.contacts.list
 
-import com.nunez.contacts.editContact.EditContactActivity
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
 
@@ -33,11 +32,7 @@ class ContactsListPresenter(
 
     override fun addContactClicked() = goToAddContactActivity()
 
-    override fun goToAddContactActivity() {
+    override fun goToAddContactActivity() = view.goToAddContactActivity()
 
-    }
-
-    override fun contactToEditClicked(id: String){
-        view.goToActivity(id, EditContactActivity::class)
-    }
+    override fun contactToEditClicked(id: String) = view.goToEditContactActivity(id)
 }
