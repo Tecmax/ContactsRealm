@@ -5,6 +5,7 @@ import com.github.javafaker.Faker
 import com.nunez.contacts.entities.Contact
 import com.nunez.contacts.repository.ContactsRepository
 import rx.Observable
+import java.util.concurrent.TimeUnit
 
 
 class ContactListInteractor(
@@ -22,8 +23,8 @@ class ContactListInteractor(
                         firstName = name().firstName(),
                         lastName = name().lastName(),
                         zipCode = address().zipCode(),
-                        phoneNumber = phoneNumber().toString(),
-                        birthday = date().toString()
+                        phoneNumber = phoneNumber().cellPhone(),
+                        birthday = date().past(10, TimeUnit.DAYS).toString()
                 )
 
                 repository.create(contact)
