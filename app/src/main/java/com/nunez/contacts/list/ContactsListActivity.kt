@@ -9,6 +9,7 @@ import android.view.MenuItem
 import com.nunez.contacts.R
 import com.nunez.contacts.addContact.AddContactActivity
 import com.nunez.contacts.common.ContactsAdapter
+import com.nunez.contacts.details.DetailsActivity
 import com.nunez.contacts.editContact.EditContactActivity
 import com.nunez.contacts.entities.Contact
 import com.nunez.contacts.repository.ContactsRepository
@@ -84,6 +85,12 @@ class ContactsListActivity : AppCompatActivity(), ContactListContract.View {
     }
 
     override fun showContactDetails(id: String) {
+        val intent = Intent(this, DetailsActivity::class.java)
+
+        if (id.isNotEmpty()){
+            intent.putExtra(DetailsActivity.EXTRA_CONTACT_ID, id)
+            startActivity(intent)
+        }
     }
 
     override fun showErrorMessage() {

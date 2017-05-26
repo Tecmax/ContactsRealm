@@ -10,6 +10,9 @@ import com.nunez.contacts.repository.ContactsRepository
 import kotlinx.android.synthetic.main.edit_contact_layout.*
 
 class EditContactActivity() : AppCompatActivity(), EditContactContract.View {
+    companion object{
+        const val EXTRA_CONTACT_ID = "contact_id"
+    }
 
     lateinit var currentContact: Contact
     val interactor: EditContactContract.Interactor by lazy { EditContactInteractor(ContactsRepository()) }

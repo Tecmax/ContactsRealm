@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <android.support.constraint.ConstraintLayout
-    android:id="@+id/container"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -22,61 +23,60 @@
         android:orientation="vertical"
         app:layout_constraintGuide_begin="72dp"/>
 
-    <EditText
-        android:id="@+id/firstNameInput"
+    <TextView
+        android:id="@+id/firstName"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:layout_marginTop="16dp"
+        android:gravity="start|center"
         android:ems="10"
-        android:hint="@string/hint_first_name"
-        android:inputType="textPersonName"
         app:layout_constraintLeft_toLeftOf="@+id/guideline2"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="@string/hint_first_name"/>
 
-    <EditText
-        android:id="@+id/lastNameInput"
+    <TextView
+        android:id="@+id/lastName"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:layout_marginTop="16dp"
+        android:gravity="start|center"
         android:ems="10"
-        android:hint="@string/hint_last_name"
-        android:inputType="textPersonName"
+        tools:text="@string/hint_last_name"
         app:layout_constraintLeft_toLeftOf="@+id/guideline2"
-        app:layout_constraintTop_toBottomOf="@+id/firstNameInput"/>
+        app:layout_constraintTop_toBottomOf="@+id/firstName"/>
 
-    <EditText
-        android:id="@+id/phoneNumberInput"
+    <TextView
+        android:id="@+id/phoneNumber"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="17dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="16dp"
+        android:gravity="start|center"
         android:ems="10"
-        android:hint="@string/hint_phone_number"
-        android:inputType="phone"
+        tools:text="@string/hint_phone_number"
         app:layout_constraintLeft_toLeftOf="@+id/guideline2"
-        app:layout_constraintTop_toBottomOf="@id/lastNameInput"/>
+        app:layout_constraintTop_toBottomOf="@id/lastName"/>
 
-    <EditText
-        android:id="@+id/birthdayInput"
+    <TextView
+        android:id="@+id/birthday"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="7dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="16dp"
+        android:gravity="start|center"
         android:ems="10"
-        android:hint="@string/edit_contact_hint_birthday"
-        android:inputType="date"
+        tools:text="@string/edit_contact_hint_birthday"
         app:layout_constraintLeft_toLeftOf="@+id/guideline2"
-        app:layout_constraintTop_toBottomOf="@+id/phoneNumberInput"
-        android:layout_marginLeft="-58dp"/>
+        app:layout_constraintTop_toBottomOf="@+id/phoneNumber"/>
 
-    <EditText
+    <TextView
         android:id="@+id/zipcodeInput"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:layout_marginTop="16dp"
+        android:gravity="start|center"
         android:ems="10"
-        android:hint="@string/hint_zip_code"
-        android:inputType="textPostalAddress"
+        tools:text="@string/hint_zip_code"
         app:layout_constraintLeft_toLeftOf="@+id/guideline2"
-        app:layout_constraintTop_toBottomOf="@+id/birthdayInput"/>
+        app:layout_constraintTop_toBottomOf="@+id/birthday"/>
 
     <ImageView
         android:id="@+id/imageView"
@@ -84,10 +84,10 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toBottomOf="@+id/firstNameInput"
+        app:layout_constraintBottom_toBottomOf="@+id/firstName"
         app:layout_constraintLeft_toLeftOf="@+id/guideline"
-        app:layout_constraintRight_toLeftOf="@+id/firstNameInput"
-        app:layout_constraintTop_toTopOf="@+id/firstNameInput"
+        app:layout_constraintRight_toLeftOf="@+id/firstName"
+        app:layout_constraintTop_toTopOf="@+id/firstName"
         app:srcCompat="@drawable/contact"/>
 
     <ImageView
@@ -98,10 +98,10 @@
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toBottomOf="@+id/phoneNumberInput"
+        app:layout_constraintBottom_toBottomOf="@+id/phoneNumber"
         app:layout_constraintLeft_toLeftOf="@+id/guideline"
-        app:layout_constraintRight_toLeftOf="@+id/phoneNumberInput"
-        app:layout_constraintTop_toTopOf="@+id/phoneNumberInput"
+        app:layout_constraintRight_toLeftOf="@+id/phoneNumber"
+        app:layout_constraintTop_toTopOf="@+id/phoneNumber"
         app:srcCompat="@drawable/phone"/>
 
     <ImageView
@@ -112,10 +112,10 @@
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toBottomOf="@+id/birthdayInput"
+        app:layout_constraintBottom_toBottomOf="@+id/birthday"
         app:layout_constraintLeft_toLeftOf="@+id/guideline"
-        app:layout_constraintRight_toLeftOf="@+id/birthdayInput"
-        app:layout_constraintTop_toTopOf="@+id/birthdayInput"
+        app:layout_constraintRight_toLeftOf="@+id/birthday"
+        app:layout_constraintTop_toTopOf="@+id/birthday"
         app:srcCompat="@drawable/calendar"/>
 
     <ImageView
