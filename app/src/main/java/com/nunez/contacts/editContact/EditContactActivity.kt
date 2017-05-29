@@ -2,6 +2,8 @@ package com.nunez.contacts.editContact
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.view.Menu
+import android.view.MenuItem
 import com.nunez.contacts.R
 import com.nunez.contacts.common.inputText
 import com.nunez.contacts.entities.Contact
@@ -23,7 +25,15 @@ class EditContactActivity() : AppCompatActivity(), EditContactContract.View {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.edit_contact_layout)
 
-        supportActionBar?.title = getString(R.string.edit_contact_activity_title)
+        supportActionBar?.let {
+            with(it) {
+                title = getString(R.string.edit_contact_activity_title)
+                setHomeButtonEnabled(true)
+                setDisplayHomeAsUpEnabled(true)
+                setHomeAsUpIndicator(applicationContext
+                        .resources.getDrawable(R.drawable.ic_close))
+            }
+        }
 
         val arguments = intent.extras
         arguments?.let {
@@ -31,14 +41,29 @@ class EditContactActivity() : AppCompatActivity(), EditContactContract.View {
             presenter.getContactDetails(id)
         }
 
-        saveBtn.setOnClickListener { presenter.onSaveClicked() }
-        cancelBtn.setOnClickListener { presenter.onCancelClicked() }
-
         birthdayInput.setOnClickListener { presenter.onDateClicked() }
         birthdayInput.setOnFocusChangeListener {
             v, hasFocus ->
             if (hasFocus) presenter.onDateClicked()
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.edit_contact_menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+
+        val id = item?.itemId
+
+        when (id) {
+            R.id.action_save -> presenter.onSaveClicked()
+            R.id.action_discard,
+            android.R.id.home -> presenter.onCancelClicked()
+        }
+
+        return super.onOptionsItemSelected(item)
     }
 
     override fun showContact(contact: Contact) {
