@@ -15,7 +15,7 @@ import kotlinx.android.synthetic.main.details_activity.*
 class DetailsActivity : AppCompatActivity(), DetailsContactContract.View {
 
 
-    companion object{
+    companion object {
         const val EXTRA_CONTACT_ID = "contact_id"
     }
 
@@ -27,7 +27,15 @@ class DetailsActivity : AppCompatActivity(), DetailsContactContract.View {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.details_activity)
 
-        supportActionBar?.title = getString(R.string.details_activity_title)
+        supportActionBar?.let {
+            with(it) {
+                title = getString(R.string.details_activity_title)
+                setHomeButtonEnabled(true)
+                setDisplayHomeAsUpEnabled(true)
+                setHomeAsUpIndicator(applicationContext
+                        .resources.getDrawable(R.drawable.ic_close))
+            }
+        }
 
         val arguments = intent.extras
         arguments?.let {
@@ -50,16 +58,17 @@ class DetailsActivity : AppCompatActivity(), DetailsContactContract.View {
 
         val id = item?.itemId
 
-        when(id){
-            R.id.action_edit -> {presenter.onEditClicked()}
-            R.id.action_delete -> {presenter.onDeleteClicked(currentContact.id)}
+        when (id) {
+            R.id.action_edit -> presenter.onEditClicked()
+            R.id.action_delete -> presenter.onDeleteClicked(currentContact.id)
+            android.R.id.home -> close()
         }
         return super.onOptionsItemSelected(item)
     }
 
     override fun showContactDetails(contact: Contact) {
         currentContact = contact
-        firstName.text= contact.firstName
+        firstName.text = contact.firstName
         lastName.text = contact.lastName
         phoneNumber.text = contact.phoneNumber
         zipcodeInput.text = contact.zipCode

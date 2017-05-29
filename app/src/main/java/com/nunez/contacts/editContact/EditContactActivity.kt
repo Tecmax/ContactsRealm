@@ -25,7 +25,15 @@ class EditContactActivity() : AppCompatActivity(), EditContactContract.View {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.edit_contact_layout)
 
-        supportActionBar?.title = getString(R.string.edit_contact_activity_title)
+        supportActionBar?.let {
+            with(it) {
+                title = getString(R.string.edit_contact_activity_title)
+                setHomeButtonEnabled(true)
+                setDisplayHomeAsUpEnabled(true)
+                setHomeAsUpIndicator(applicationContext
+                        .resources.getDrawable(R.drawable.ic_close))
+            }
+        }
 
         val arguments = intent.extras
         arguments?.let {
@@ -50,14 +58,9 @@ class EditContactActivity() : AppCompatActivity(), EditContactContract.View {
         val id = item?.itemId
 
         when (id) {
-            R.id.action_save -> {
-                presenter.onSaveClicked()
-                return true
-            }
-            R.id.deleteContact -> {
-                presenter.onCancelClicked()
-                return true
-            }
+            R.id.action_save -> presenter.onSaveClicked()
+            R.id.action_discard,
+            android.R.id.home -> presenter.onCancelClicked()
         }
 
         return super.onOptionsItemSelected(item)

@@ -22,10 +22,18 @@ class AddContactActivity : AppCompatActivity(), AddContactContract.View {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.add_contact_activity)
 
-        supportActionBar?.title = getString(R.string.add_contact_activity_title)
+        supportActionBar?.let {
+            with(it) {
+                title = getString(R.string.add_contact_activity_title)
+                setHomeButtonEnabled(true)
+                setDisplayHomeAsUpEnabled(true)
+                setHomeAsUpIndicator(applicationContext
+                        .resources.getDrawable(R.drawable.ic_close))
+            }
+        }
 
         birthdayInput.setOnFocusChangeListener { v, hasFocus ->
-            if(hasFocus) presenter.onDateClicked()
+            if (hasFocus) presenter.onDateClicked()
         }
         birthdayInput.setOnClickListener { presenter.onDateClicked() }
     }
@@ -50,13 +58,9 @@ class AddContactActivity : AppCompatActivity(), AddContactContract.View {
                 }
 
                 presenter.onSaveClicked(currentContact)
-                return true
             }
-
-            R.id.action_discard -> {
-                presenter.onCancelClicked()
-                return true
-            }
+            R.id.action_discard,
+            android.R.id.home -> presenter.onCancelClicked()
         }
 
         return super.onOptionsItemSelected(item)
