@@ -2,6 +2,8 @@ package com.nunez.contacts.editContact
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.view.Menu
+import android.view.MenuItem
 import com.nunez.contacts.R
 import com.nunez.contacts.common.inputText
 import com.nunez.contacts.entities.Contact
@@ -31,14 +33,34 @@ class EditContactActivity() : AppCompatActivity(), EditContactContract.View {
             presenter.getContactDetails(id)
         }
 
-        saveBtn.setOnClickListener { presenter.onSaveClicked() }
-        cancelBtn.setOnClickListener { presenter.onCancelClicked() }
-
         birthdayInput.setOnClickListener { presenter.onDateClicked() }
         birthdayInput.setOnFocusChangeListener {
             v, hasFocus ->
             if (hasFocus) presenter.onDateClicked()
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.edit_contact_menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+
+        val id = item?.itemId
+
+        when (id) {
+            R.id.action_save -> {
+                presenter.onSaveClicked()
+                return true
+            }
+            R.id.deleteContact -> {
+                presenter.onCancelClicked()
+                return true
+            }
+        }
+
+        return super.onOptionsItemSelected(item)
     }
 
     override fun showContact(contact: Contact) {
