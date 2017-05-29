@@ -17,4 +17,10 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
 
+    <style name="BottomSheetTextView">
+        <item name="android:drawablePadding">16dp</item>
+        <item name="android:paddingLeft">16dp</item>
+        <item name="android:gravity">center|start</item>
+    </style>
+
 </resources>
