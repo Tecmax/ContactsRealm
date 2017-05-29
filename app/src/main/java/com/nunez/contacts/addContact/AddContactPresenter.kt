@@ -25,4 +25,6 @@ class AddContactPresenter(
         else
             view.showErrorMessage()
     }
+
+    override fun onDateClicked() = view.showDatePicker()
 }

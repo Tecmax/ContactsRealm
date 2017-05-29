@@ -5,7 +5,9 @@ import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import com.nunez.contacts.R
+import com.nunez.contacts.common.inputText
 import com.nunez.contacts.common.showSnackbar
+import com.nunez.contacts.editContact.DatePickerFragment
 import com.nunez.contacts.entities.Contact
 import com.nunez.contacts.repository.ContactsRepository
 import kotlinx.android.synthetic.main.add_contact_activity.*
@@ -21,6 +23,11 @@ class AddContactActivity : AppCompatActivity(), AddContactContract.View {
         setContentView(R.layout.add_contact_activity)
 
         supportActionBar?.title = getString(R.string.add_contact_activity_title)
+
+        birthdayInput.setOnFocusChangeListener { v, hasFocus ->
+            if(hasFocus) presenter.onDateClicked()
+        }
+        birthdayInput.setOnClickListener { presenter.onDateClicked() }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -61,5 +68,12 @@ class AddContactActivity : AppCompatActivity(), AddContactContract.View {
 
     override fun showErrorMessage() {
         showSnackbar(container, getString(R.string.add_contact_error_msg))
+    }
+
+    override fun showDatePicker() {
+        DatePickerFragment({
+            dateSelected ->
+            birthdayInput.inputText(dateSelected)
+        }).show(supportFragmentManager, "datepicker")
     }
 }
