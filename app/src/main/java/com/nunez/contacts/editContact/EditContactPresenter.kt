@@ -27,4 +27,6 @@ class EditContactPresenter(
     override fun onCancelClicked() {
        view.closeView()
     }
+
+    override fun onDateClicked() = view.showDatePicker()
 }

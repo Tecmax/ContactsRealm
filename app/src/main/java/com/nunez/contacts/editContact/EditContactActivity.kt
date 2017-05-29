@@ -10,7 +10,8 @@ import com.nunez.contacts.repository.ContactsRepository
 import kotlinx.android.synthetic.main.edit_contact_layout.*
 
 class EditContactActivity() : AppCompatActivity(), EditContactContract.View {
-    companion object{
+
+    companion object {
         const val EXTRA_CONTACT_ID = "contact_id"
     }
 
@@ -30,10 +31,14 @@ class EditContactActivity() : AppCompatActivity(), EditContactContract.View {
             presenter.getContactDetails(id)
         }
 
-        saveBtn.setOnClickListener {
-            presenter.onSaveClicked()
-        }
+        saveBtn.setOnClickListener { presenter.onSaveClicked() }
         cancelBtn.setOnClickListener { presenter.onCancelClicked() }
+
+        birthdayInput.setOnClickListener { presenter.onDateClicked() }
+        birthdayInput.setOnFocusChangeListener {
+            v, hasFocus ->
+            if (hasFocus) presenter.onDateClicked()
+        }
     }
 
     override fun showContact(contact: Contact) {
@@ -50,8 +55,9 @@ class EditContactActivity() : AppCompatActivity(), EditContactContract.View {
     override fun closeView() {
         finish()
     }
+
     override fun getCurrentContactDetails(): Contact {
-        with(currentContact){
+        with(currentContact) {
             firstName = firstNameInput.text.toString()
             lastName = lastNameInput.text.toString()
             phoneNumber = phoneNumberInput.text.toString()
@@ -59,5 +65,12 @@ class EditContactActivity() : AppCompatActivity(), EditContactContract.View {
             zipCode = zipcodeInput.text.toString()
         }
         return currentContact
+    }
+
+    override fun showDatePicker() {
+        DatePickerFragment({
+            dateSelected ->
+            birthdayInput.inputText(dateSelected)
+        }).show(supportFragmentManager, "datepicker")
     }
 }

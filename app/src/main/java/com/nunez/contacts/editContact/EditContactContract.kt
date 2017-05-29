@@ -8,12 +8,14 @@ interface EditContactContract {
         fun showContact(contact: Contact)
         fun closeView()
         fun getCurrentContactDetails(): Contact
+        fun showDatePicker()
     }
 
     interface Presenter{
         fun getContactDetails(id: String)
         fun onSaveClicked()
         fun onCancelClicked()
+        fun onDateClicked()
     }
 
     interface Interactor{
