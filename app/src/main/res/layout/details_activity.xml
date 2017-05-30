@@ -25,58 +25,48 @@
 
     <TextView
         android:id="@+id/firstName"
+        style="@style/DetailsActivityTextView"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
-        android:layout_marginTop="16dp"
-        android:gravity="start|center"
-        android:ems="10"
         app:layout_constraintLeft_toLeftOf="@+id/guideline2"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="@string/hint_first_name"/>
 
     <TextView
         android:id="@+id/lastName"
+        style="@style/DetailsActivityTextView"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
-        android:layout_marginTop="16dp"
-        android:gravity="start|center"
-        android:ems="10"
-        tools:text="@string/hint_last_name"
         app:layout_constraintLeft_toLeftOf="@+id/guideline2"
-        app:layout_constraintTop_toBottomOf="@+id/firstName"/>
+        app:layout_constraintTop_toBottomOf="@+id/firstName"
+        tools:text="@string/hint_last_name"/>
 
     <TextView
         android:id="@+id/phoneNumber"
+        style="@style/DetailsActivityTextView"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
-        android:layout_marginTop="16dp"
-        android:gravity="start|center"
-        android:ems="10"
-        tools:text="@string/hint_phone_number"
         app:layout_constraintLeft_toLeftOf="@+id/guideline2"
-        app:layout_constraintTop_toBottomOf="@id/lastName"/>
+        app:layout_constraintTop_toBottomOf="@id/lastName"
+        tools:text="@string/hint_phone_number"/>
 
     <TextView
         android:id="@+id/birthday"
+        style="@style/DetailsActivityTextView"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
-        android:layout_marginTop="16dp"
-        android:gravity="start|center"
-        android:ems="10"
-        tools:text="@string/edit_contact_hint_birthday"
         app:layout_constraintLeft_toLeftOf="@+id/guideline2"
-        app:layout_constraintTop_toBottomOf="@+id/phoneNumber"/>
+        app:layout_constraintTop_toBottomOf="@+id/phoneNumber"
+        tools:text="@string/edit_contact_hint_birthday"/>
 
     <TextView
         android:id="@+id/zipcodeInput"
+        style="@style/DetailsActivityTextView"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
-        android:layout_marginTop="16dp"
-        android:gravity="start|center"
-        android:ems="10"
-        tools:text="@string/hint_zip_code"
         app:layout_constraintLeft_toLeftOf="@+id/guideline2"
-        app:layout_constraintTop_toBottomOf="@+id/birthday"/>
+        app:layout_constraintTop_toBottomOf="@+id/birthday"
+        tools:text="@string/hint_zip_code"/>
 
     <ImageView
         android:id="@+id/imageView"
