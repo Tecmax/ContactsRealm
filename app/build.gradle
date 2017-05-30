@@ -38,22 +38,37 @@ android {
     }
 }
 
+ext.daggerVersion = "2.11-rc2"
+
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
 
-
+    // Kotlin
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
 
-
+    // Data faker
     compile group: 'com.github.javafaker', name: 'javafaker', version: '0.13'
+
+    // Dagger 2
+    compile "com.google.dagger:dagger:$daggerVersion"
+    compile ("com.google.dagger:dagger-android-support:$daggerVersion") {
+        exclude group: 'com.google.code.findbugs', module: 'jsr305'
+    }
+    kapt "com.google.dagger:dagger-compiler:$daggerVersion"
+    annotationProcessor "com.google.dagger:dagger-android-processor:$daggerVersion"
+    provided 'org.glassfish:javax.annotation:10.0-b28'
+
+    // Support
+    compile 'com.android.support:appcompat-v7:25.3.1'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    compile 'com.android.support:design:25.3.1'
+
+    // Real extensions
+    compile 'com.github.vicpinm:krealmextensions:1.0.7'
 
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:25.3.1'
-    compile 'com.android.support.constraint:constraint-layout:1.0.2'
-    compile 'com.android.support:design:25.3.1'
-    compile 'com.github.vicpinm:krealmextensions:1.0.7'
     testCompile 'junit:junit:4.12'
 }
 repositories {
