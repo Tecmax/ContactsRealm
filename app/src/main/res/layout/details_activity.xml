@@ -81,21 +81,19 @@
         app:srcCompat="@drawable/contact"/>
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/phoneImage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toBottomOf="@+id/phoneNumber"
         app:layout_constraintLeft_toLeftOf="@+id/guideline"
         app:layout_constraintRight_toLeftOf="@+id/phoneNumber"
         app:layout_constraintTop_toTopOf="@+id/phoneNumber"
         app:srcCompat="@drawable/phone"/>
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/birthdayImage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -109,7 +107,7 @@
         app:srcCompat="@drawable/calendar"/>
 
     <ImageView
-        android:id="@+id/imageView4"
+        android:id="@+id/zipImage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
