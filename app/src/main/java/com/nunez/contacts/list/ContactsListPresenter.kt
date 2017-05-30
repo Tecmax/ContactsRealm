@@ -2,8 +2,10 @@ package com.nunez.contacts.list
 
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
+import javax.inject.Inject
 
-class ContactsListPresenter(
+class ContactsListPresenter
+@Inject constructor(
         val view: ContactListContract.View,
         val interactor: ContactListContract.Interactor
 ) : ContactListContract.Presenter {

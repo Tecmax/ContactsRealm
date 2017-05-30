@@ -1,16 +1,16 @@
 package com.nunez.contacts.list
 
-import android.content.Context
 import com.github.javafaker.Faker
 import com.nunez.contacts.entities.Contact
 import com.nunez.contacts.repository.ContactsRepository
 import rx.Observable
 import java.util.concurrent.TimeUnit
+import javax.inject.Inject
 
 
-class ContactListInteractor(
-        val repository: ContactsRepository,
-        val context: Context
+class ContactListInteractor
+@Inject constructor(
+        val repository: ContactsRepository
 ) : ContactListContract.Interactor {
 
     override fun addFakeContacts(): List<Contact> {

@@ -7,12 +7,14 @@ import android.support.v7.widget.LinearLayoutManager
 import com.nunez.contacts.R
 import com.nunez.contacts.addContact.AddContactActivity
 import com.nunez.contacts.common.ContactsAdapter
+import com.nunez.contacts.dependencyInjection.contactlist.DaggerListComponent
+import com.nunez.contacts.dependencyInjection.contactlist.ListModule
 import com.nunez.contacts.details.DetailsActivity
 import com.nunez.contacts.editContact.EditContactActivity
 import com.nunez.contacts.entities.Contact
-import com.nunez.contacts.repository.ContactsRepository
 import kotlinx.android.synthetic.main.contacts_list_activity.*
 import kotlinx.android.synthetic.main.content_contatcs_list.*
+import javax.inject.Inject
 
 class ContactsListActivity : AppCompatActivity(), ContactListContract.View {
 
@@ -24,14 +26,18 @@ class ContactsListActivity : AppCompatActivity(), ContactListContract.View {
     lateinit var adapter: ContactsAdapter
 
     var modal: ContactOptionModal? = null
-    val repository = ContactsRepository()
-    val interactor by lazy { ContactListInteractor(repository, applicationContext) }
-    val presenter by lazy { ContactsListPresenter(this, interactor) }
+
+    @Inject lateinit var presenter: ContactsListPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.contacts_list_activity)
         setSupportActionBar(toolbar)
+
+        DaggerListComponent.builder()
+                .listModule(ListModule(this))
+                .build()
+                .inject(this)
 
         presenter.requestContacts()
 
