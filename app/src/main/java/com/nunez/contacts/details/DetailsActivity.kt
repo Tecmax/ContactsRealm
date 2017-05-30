@@ -5,6 +5,9 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
+import android.view.View.GONE
+import android.widget.TextView
 import com.nunez.contacts.R
 import com.nunez.contacts.editContact.EditContactActivity
 import com.nunez.contacts.entities.Contact
@@ -68,11 +71,11 @@ class DetailsActivity : AppCompatActivity(), DetailsContactContract.View {
 
     override fun showContactDetails(contact: Contact) {
         currentContact = contact
-        firstName.text = contact.firstName
-        lastName.text = contact.lastName
-        phoneNumber.text = contact.phoneNumber
-        zipcodeInput.text = contact.zipCode
-        birthday.text = contact.birthday
+        handleEmptyValues(firstName, contact.firstName,null)
+        handleEmptyValues(lastName, contact.lastName,null)
+        handleEmptyValues(phoneNumber, contact.phoneNumber, phoneImage)
+        handleEmptyValues(zipcodeInput, contact.zipCode, zipImage)
+        handleEmptyValues(birthday, contact.birthday, birthdayImage)
     }
 
     override fun goToEditActivity() {
@@ -83,6 +86,15 @@ class DetailsActivity : AppCompatActivity(), DetailsContactContract.View {
 
     override fun close() {
         finish()
+    }
+
+    private fun handleEmptyValues(textView: TextView, value: String, image: View?){
+        if(value.isEmpty()){
+            textView.visibility = GONE
+            image?.visibility = GONE
+        }
+        else
+            textView.text = value
     }
 }
 
